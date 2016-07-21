@@ -1,6 +1,5 @@
 li {
 list-style:none;
-
 }
 .postImg {
   width: 30vh;
@@ -12,4 +11,10 @@ list-style:none;
   border-radius: 6px;
   margin: 0 0 20px 0;
 
+}
+.afterUp {
+  color: green;
+}
+.afterDown {
+  color: red;
 }
