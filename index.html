@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body ng-controller="posts">
     <nav class="navbar navbar-dark bg-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <button type="button" class="btn btn-default navbar-btn">
+                        <button type="button" class="btn btn-default navbar-btn" ng-click="showme=true">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Submit Post
                         </button>
                     </li>
@@ -47,13 +47,15 @@
 
                     </form>
 
-
-                    <li>
-                        Sort By Votes:
-                        <select class="navbar-select" ng-model="filter">
-                            <option value="votes">Votes</option>
-                            <option value="title">Title</option>
-                        </select>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="sortType = 'date'">Date</a></li>
+                            <li><a href="#" ng-click="sortType = 'votes'">Votes</a></li>
+                            <li><a href="#" ng-click="sortType = 'title'">Title</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" ng-click="sortType = 'reverse'">Reverse</a></li>
+                        </ul>
                     </li>
                 </ul>
 
@@ -69,10 +71,24 @@
                 <h1>REDDIT</h1></div>
             <div class="col-md-4"></div>
         </div>
-
-        <ul ng-controller="posts">
+        <div class="row" ng-show="showme">
+            <div class="col-sm-12">
+                <form name="addPost" novalidate action="#" ng-submit="submit(addPost)">
+                    <label for="title">Title: </label>
+                    <input ng-model="addPost.title" type="text" id="title" required> <br>
+                    <label for="author">Author: </label>
+                    <input ng-model="addPost.author" type="text" id="author" required> <br>
+                    <label for="description">description: </label>
+                    <input ng-model="addPost.description" type="text" id="description" required> <br>
+                    <label for="image">Image Url: </label>
+                    <input ng-model="addPost.image" type="url" id="image" required>
+                    <input type="submit" value="Submit!" ng-click="showme=false">
+                </form>
+            </div>
+        </div>
+        <ul>
             <li>
-                <div class="row postBG" ng-repeat="post in posts | orderBy:sortType | filter:search">
+                <div class="row postBG" ng-repeat="post in posts | orderBy:sortType:sortReverse | filter:search">
                     <div class="col-sm-4 col-md-4"> <img src="{{post.image}}" class="postImg" />
                     </div>
                     <div class="col-sm-8 col-md-8">
@@ -94,7 +110,7 @@
 
                         </div>
                         <div class="row text-center">
-                            <span class="glyphicon glyphicon-calendar"></span> | <span class="glyphicon glyphicon-comment"></span> Comment | <span class="glyphicon glyphicon-pencil"></span> Add Comment
+                            <span class="glyphicon glyphicon-calendar"> {{post.date | date:'medium'}}</span> | <span class="glyphicon glyphicon-comment"></span> Comment | <span class="glyphicon glyphicon-pencil"></span> Add Comment
                         </div>
                     </div>
                 </div>
