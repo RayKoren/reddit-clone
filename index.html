@@ -72,16 +72,31 @@
 
         <ul ng-controller="posts">
             <li>
-                <div class="row" ng-repeat="post in posts">
+                <div class="row postBG" ng-repeat="post in posts">
                     <div class="col-sm-4 col-md-4"> <img src="{{post.image}}" alt="" class="postImg" />
                     </div>
                     <div class="col-sm-8 col-md-8">
-                      <div class="row">
-                        {{post.title}}
-                      </div>
-                      <div class="row">
-{{post.description}}                      </div>
-                       </div>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <h2>{{post.title}} |  <a href="#">
+          <span class="glyphicon glyphicon-chevron-up"></span></a>
+        <a href="#">
+          <span class="glyphicon glyphicon-chevron-down"></span></a> {{post.votes}}</h2>
+          </div>
+          <div class="col-sm-4">
+                            <h3>By: {{post.author}}</h3>
+                      </div>  </div>
+                        <div class="row">
+                            <p>
+                                {{post.description}}
+                            </p>
+
+                        </div>
+                        <div class="row text-center">
+                          <span class="glyphicon glyphicon-calendar"></span>  |  <span class="glyphicon glyphicon-comment"></span> Comment  |  <span class="glyphicon glyphicon-pencil"></span> Add Comment
+
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>
