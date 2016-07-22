@@ -12,6 +12,12 @@ list-style:none;
   margin: 0 0 20px 0;
 
 }
+.commentBG {
+  background-color: rgba(160, 255, 43, 0.82);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 0 0 10px 0;
+}
 .afterUp {
   color: green;
 }

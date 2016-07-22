@@ -75,20 +75,24 @@
             <div class="col-sm-12">
                 <form name="addPost" novalidate action="#" ng-submit="submit(addPost)">
                     <label for="title">Title: </label>
-                    <input ng-model="addPost.title" type="text" id="title" required> <br>
+                    <input ng-model="addPost.title" type="text" id="title" required>
+                    <br>
                     <label for="author">Author: </label>
-                    <input ng-model="addPost.author" type="text" id="author" required> <br>
+                    <input ng-model="addPost.author" type="text" id="author" required>
+                    <br>
                     <label for="description">description: </label>
-                    <input ng-model="addPost.description" type="text" id="description" required> <br>
+                    <input ng-model="addPost.description" type="text" id="description" required>
+                    <br>
                     <label for="image">Image Url: </label>
                     <input ng-model="addPost.image" type="url" id="image" required>
                     <input type="submit" value="Submit!" ng-click="showme=false">
                 </form>
             </div>
         </div>
-        <ul>
+
+        <ul class="postUl" ng-repeat="post in posts | orderBy:sortType:sortReverse | filter:search">
             <li>
-                <div class="row postBG" ng-repeat="post in posts | orderBy:sortType:sortReverse | filter:search">
+                <div class="row postBG" >
                     <div class="col-sm-4 col-md-4"> <img src="{{post.image}}" class="postImg" />
                     </div>
                     <div class="col-sm-8 col-md-8">
@@ -107,13 +111,41 @@
                             <p>
                                 {{post.description}}
                             </p>
-
                         </div>
                         <div class="row text-center">
                             <span class="glyphicon glyphicon-calendar"> {{post.date | date:'medium'}}</span> | <span class="glyphicon glyphicon-comment"></span> Comment | <span class="glyphicon glyphicon-pencil"></span> Add Comment
                         </div>
                     </div>
-                </div>
+</div>
+                <ul class="commentUl">
+                  <li>
+                    <div class="row commentBG" ng-repeat="comment in post.comments">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{comment.title}}
+                            </div>
+                            <div class="col-sm-6">
+                                By: {{comment.author}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{comment.text}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                              STARZ:  {{comment.cVotes}}
+                            </div>
+                            <div class="col-sm-6">
+                                Date: {{comment.date | date:'medium'}}
+                            </div>
+                        </div>
+                    </div>
+
+                  </li>
+                </ul>
+
             </li>
         </ul>
 
