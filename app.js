@@ -9,6 +9,7 @@ app.controller("posts", function($scope) {
         image: 'http://autoguide.com.vsassets.com/blog/wp-content/uploads/2016/05/2016-audi-a5.jpg',
         votes: 5,
         description: "AUDI",
+        comments: [],
         date: new Date("2016-07-17T16:19:53.155Z")
     }, {
         title: 'Bradz Car',
@@ -16,6 +17,7 @@ app.controller("posts", function($scope) {
         image: 'http://previews.123rf.com/images/EyeMark/EyeMark1412/eyemark141200027/35027658-An-old-rusted-out-scrap-car-that-has-been-abandoned-in-the-woods-Stock-Photo.jpg',
         votes: 34,
         description: "AUDI",
+        comments: [],
         date: new Date("2015-11-17T16:19:53.155Z")
     }, {
         title: 'Another Car',
@@ -52,16 +54,18 @@ app.controller("posts", function($scope) {
             description: formData.description,
             image: formData.image,
             votes: 0,
-            date: new Date
+            comments: [],
+            date: new Date()
         });
+        formData = {};
     };
-    $scope.submitComment = function(formData, posts) {
-      console.log(formData);
-        $scope.posts.comment.push({
-            title: formData.title,
-            author: formData.author,
-            text: formData.text
+    $scope.submitComment = function() {
+        this.post.comments.push({
+            title: this.post.addComment.title,
+            author: this.post.addComment.author,
+            text: this.post.addComment.text
         });
+        this.post.addComment = {};
     };
 
 

@@ -99,7 +99,9 @@
                                 <h2>{{post.title}} |
       <btn class="btn btn-default glyphicon glyphicon-chevron-up" ng-click="upVote(post)"></btn>
       <btn class="btn btn-default glyphicon glyphicon-chevron-down"  ng-click="downVote(post)"></btn>
-       {{post.votes}}</h2>
+       <div ng-class="{afterUp: post.votes >= '1' , afterDown: post.votes <= '-1' }">
+         {{post.votes}}
+       </div></h2>
                             </div>
                             <div class="col-sm-4">
                                 <h3>By: {{post.author}}</h3>
@@ -150,16 +152,16 @@
                 </ul>
                 <div class="row" ng-show="addComments">
                     <div class="col-sm-12">
-                        <form name="addComment" novalidate action="#" ng-submit="submitComment(addComment)">
+                        <form name="addComment" novalidate ng-submit="submitComment()">
                           Add A Comment:
                             <label for="title">Title: </label>
-                            <input ng-model="addComment.title" type="text" id="title" required>
+                            <input ng-model="post.addComment.title" type="text" id="title" required>
                             <br>
                             <label for="author">Author: </label>
-                            <input ng-model="addComment.author" type="text" id="author" required>
+                            <input ng-model="post.addComment.author" type="text" id="author" required>
                             <br>
                             <label for="text">Comment: </label>
-                            <input ng-model="addComment.text" type="text" id="text" required>
+                            <input ng-model="post.addComment.text" type="text" id="text" required>
                             <br>
                             <input type="submit" value="Submit!" >
                         </form>
