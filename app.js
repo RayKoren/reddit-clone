@@ -25,14 +25,14 @@ app.controller("posts", function($scope) {
         description: "Honda",
         date: new Date("2016-03-17T16:19:53.155Z"),
         comments: [{
-            title: 'Fuck This',
+            title: 'Yeah This',
             author: 'Bradford',
-            text: "420 bruh",
+            text: "bruh",
             cVotes: 2,
             date: new Date("2016-03-17T16:19:53.155Z")
         },
         {
-            title: 'HOW HIGH ARE YOU????',
+            title: 'HOW ARE YOU????',
             author: 'Zippy',
             text: "Lit Temple",
             cVotes: 0,
@@ -55,20 +55,14 @@ app.controller("posts", function($scope) {
             date: new Date
         });
     };
+    $scope.submitComment = function(formData, posts) {
+      console.log(formData);
+        $scope.posts.comment.push({
+            title: formData.title,
+            author: formData.author,
+            text: formData.text
+        });
+    };
 
-  //   $scope.comments = [{
-  //       title: 'Fuck This',
-  //       author: 'Bradford',
-  //       text: "420 bruh",
-  //       cVotes: 2,
-  //       date: new Date("2016-03-17T16:19:53.155Z")
-  //   },
-  //   {
-  //       title: 'HOW HIGH ARE YOU????',
-  //       author: 'Zippy',
-  //       text: "Lit Temple",
-  //       cVotes: 0,
-  //       date: new Date("2016-03-17T16:19:53.155Z")
-  //   }
-  // ];
+
 });

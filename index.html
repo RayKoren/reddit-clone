@@ -53,8 +53,6 @@
                             <li><a href="#" ng-click="sortType = 'date'">Date</a></li>
                             <li><a href="#" ng-click="sortType = 'votes'">Votes</a></li>
                             <li><a href="#" ng-click="sortType = 'title'">Title</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" ng-click="sortType = 'reverse'">Reverse</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -113,11 +111,17 @@
                             </p>
                         </div>
                         <div class="row text-center">
-                            <span class="glyphicon glyphicon-calendar"> {{post.date | date:'medium'}}</span> | <span class="glyphicon glyphicon-comment"></span> Comment | <span class="glyphicon glyphicon-pencil"></span> Add Comment
+                            <span class="glyphicon glyphicon-calendar"> {{post.date | date:'medium'}}</span> |
+                            <button type="button" class="btn btn-default navbar-btn" ng-click="showComments=true">
+                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comment
+                            </button>
+                            | <button type="button" class="btn btn-default navbar-btn" ng-click="addComments=true">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Add Comment
+                            </button>
                         </div>
                     </div>
-</div>
-                <ul class="commentUl">
+                  </div>
+                <ul class="commentUl" ng-show="showComments">
                   <li>
                     <div class="row commentBG" ng-repeat="comment in post.comments">
                         <div class="row">
@@ -142,18 +146,31 @@
                             </div>
                         </div>
                     </div>
-
                   </li>
                 </ul>
-
+                <div class="row" ng-show="addComments">
+                    <div class="col-sm-12">
+                        <form name="addComment" novalidate action="#" ng-submit="submitComment(addComment)">
+                          Add A Comment:
+                            <label for="title">Title: </label>
+                            <input ng-model="addComment.title" type="text" id="title" required>
+                            <br>
+                            <label for="author">Author: </label>
+                            <input ng-model="addComment.author" type="text" id="author" required>
+                            <br>
+                            <label for="text">Comment: </label>
+                            <input ng-model="addComment.text" type="text" id="text" required>
+                            <br>
+                            <input type="submit" value="Submit!" >
+                        </form>
+                    </div>
+                </div>
             </li>
         </ul>
-
     </div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>
